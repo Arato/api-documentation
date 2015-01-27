@@ -19,29 +19,29 @@ Notes related resources of the **Authentication API**
 # Group alerts
 Notes related resources of the **Alerts API**
 
+Below are all properties related to an Alert.
+
+| Field        | Required for creation | Read only | type   | Description                                     |
+|--------------|:---------------------:|:---------:|--------|-------------------------------------------------|
+| `id`         |           ✔           |           | int    | The id in the database                          |
+| `title`      |           ✔           |           | String | The title of the Alert                          |
+| `price`      |           ✔           |           | int    | The price of the Alert                          |
+| `content`    |                       |           | String | A more complete description of the Alert        |
+| `user_id`    |           ✔           |     ✔     | int    | The id of the User who created the Alert        |
+| `created_at` |                       |     ✔     | Date   | a ISO8601 formatted date.                       |
+| `updated_at` |                       |     ✔     | Date   | a ISO8601 formatted date. Updated on each save. |
+
 ## GET /api/v1/alerts
-rergregreg
-| Field     | Required | type   | Description                              |
-|-----------|----------|--------|------------------------------------------|
-| `id`      |     ✔    | int    | The id in the database                   |
-| `title`   |     ✔    | String | The title of the Alert                   |
-| `price`   |     ✔    | int    | The price of the Alert                   |
-| `content` |          | String | A more complete description of the Alert |
-| `user_id` |     ✔    | int    | The id of the User who created the Alert |
-|           |          |        |                                          |
-+ Parameters
-    + page (optional, number) ... The page
-    + userId (optional, string) ... A user id to filter from
-    + limit = `20` (optional, number) ... The number of elements per page. Maximum `50`.
-    + sort  = `id` (optional, string) ... The field to sort from.
-        + Values
-            + `id`
-            + `created_at`
-            + `price`
-    + order = `desc`(optional, string) ... The order of sorting.
-        + Values
-            + `asc`
-            + `desc`
+The GET endpoint retrieves all alerts. you can add query parameters to the endpoint to filter your data.
+
+| Field    | type   |default | Description                                                           |
+|----------|--------|--------|-----------------------------------------------------------------------|
+| `page`   | int    | 1      | The page.                                                             |
+| `limit`  | String | 20     | The number of elements per page. Maximum `50`.                        |
+| `userId` | int    |        | A user id to filter from.                                             |
+| `sort`   | String | `id`   | The field to sort from. Available values : `id`,`created_at`,`price`. |
+| `order`  | int    | `desc` | The order of sorting. Available values : `asc`, `desc`.               |
+
 + Response 200 (application/json)
 
         {
@@ -64,25 +64,10 @@ rergregreg
 
 + Response 401
 
-        {
-            "users":[{
-                    "id":1,
-                    "email":"email@example.com",
-                    "sequence_number":0
-                }
-            ],
-            "paginate":{
-                "total_count":1,
-                "total_pages":1,
-                "current_page":1,
-                "limit":20
-            }
-        }
-
-
 
 ## POST /api/v1/alerts
-zefzefezfzef rfgr 
+The POST endpoint creates a new alert. Below are all properties related to an Alert.
+
 + Request (application/json)
 
         {
