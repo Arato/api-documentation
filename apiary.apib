@@ -1,23 +1,18 @@
 FORMAT: 1A
 host: https://arato-api.herokuapp.com
+
 # arato
 Notes API is a *short texts saving* service similar to its physical paper presence on your table.
-
-
 
 
 # Group Authentication
 Notes related resources of the **Authentication API**
 
 
-
-
-
-
-
-
 # Group alerts
 Notes related resources of the **Alerts API**
+
+## Model
 
 Below are all properties related to an Alert.
 
@@ -31,7 +26,9 @@ Below are all properties related to an Alert.
 | `created_at` |                       |     ✔     | Date   | a ISO8601 formatted date.                       |
 | `updated_at` |                       |     ✔     | Date   | a ISO8601 formatted date. Updated on each save. |
 
-## GET /api/v1/alerts
+
+## api/v1/alerts [/api/v1/alerts{?page,limit,userId,sort,order}/{]
+### Retrieve all alerts [GET]
 The GET endpoint retrieves all alerts. you can add query parameters to the endpoint to filter your data.
 
 | Field    | type   |default | Description                                                           |
@@ -41,49 +38,76 @@ The GET endpoint retrieves all alerts. you can add query parameters to the endpo
 | `userId` | int    |        | A user id to filter from.                                             |
 | `sort`   | String | `id`   | The field to sort from. Available values : `id`,`created_at`,`price`. |
 | `order`  | int    | `desc` | The order of sorting. Available values : `asc`, `desc`.               |
-
++ Parameters
+    + page (optional, number) ... The page
+    + userId (optional, string) ... A user id to filter from
+    + limit = `20` (optional, number) ... The number of elements per page. Maximum `50`.
+    + sort  = `id` (optional, string) ... The field to sort from.
+        + Values
+            + `id`
+            + `created_at`
+            + `price`
+    + order = `desc`(optional, string) ... The order of sorting.
+        + Values
+            + `asc`
+            + `desc`
 + Response 200 (application/json)
 
-        {
-            "users":[{
-                    "id":1,
-                    "email":"email@example.com",
-                    "sequence_number":0
-                }
-            ],
-            "paginate":{
-                "total_count":1,
-                "total_pages":1,
-                "current_page":1,
-                "limit":20
-            }
-        }
-
-
+        {
+            "users":[{
+                    "id":1,
+                    "email":"email@example.com",
+                    "sequence_number":0
+                }
+            ],
+            "paginate":{
+                "total_count":1,
+                "total_pages":1,
+                "current_page":1,
+                "limit":20
+            }
+        }
 
 
 + Response 401
 
-
-## POST /api/v1/alerts
-The POST endpoint creates a new alert. Below are all properties related to an Alert.
+### Create a new alert [POST]
 
 + Request (application/json)
 
-        {
-            "title": "My title",
-            "price" : "10",
-            "content" : "Hello"
-        }
-
-
+        {
+            "title": "My title",
+            "price" : "10",
+            "content" : "Hello"
+        }
 
 
 + Response 201 (application/json)
 
-        { "id": 3, "title": "Buy cheese and bread for breakfast." }
+        { "id": 3, "title": "Buy cheese and bread for breakfast." }
+
+## api/v1/alerts/{id} [/api/v1/alerts/{id}]
+### Update an alert [PUT]
++ Parameters
+    + id (required, number, `1`) ... `id` of the Alert.
+
++ Request (application/json)
+
+        {
+            "title": "My title",
+            "price" : "10",
+            "content" : "Hello"
+        }
 
 
++ Response 200 (application/json)
+
+        { "id": 3, "title": "Buy cheese and bread for breakfast." }
+
+## DELETE /api/v1/alerts/{id}
+
++ Parameters
+    + id (required, number, `1`) ... Numeric `id` of the Note to perform action with. Has example value.
 
 
 # Group Users
@@ -92,26 +116,24 @@ Notes related resources of the **Users API**
 ## Users Collection [/api/v1/users{?since}]
 ### List all Users [GET]
 + Parameters
-    + since (optional, string) ... dfdfdfd dfsdf df sdf
+    + since (optional, string) ... dfdfdfd dfsdf df sdf
+    
 + Response 200 (application/json)
 
-
-
-
-        {
-            "users":[{
-                    "id":1,
-                    "email":"email@example.com",
-                    "sequence_number":0
-                }
-            ],
-            "paginate":{
-                "total_count":1,
-                "total_pages":1,
-                "current_page":1,
-                "limit":20
-            }
-        }
+        {
+            "users":[{
+                    "id":1,
+                    "email":"email@example.com",
+                    "sequence_number":0
+                }
+            ],
+            "paginate":{
+                "total_count":1,
+                "total_pages":1,
+                "current_page":1,
+                "limit":20
+            }
+        }
 
 
 
@@ -149,9 +171,6 @@ Notes related resources of the **Users API**
 ## Note [/notes/{id}]
 A single Note object with all its details
 
-
-
-
 + Parameters
     + id (required, number, `1`) ... Numeric `id` of the Note to perform action with. Has example value.
 
@@ -159,30 +178,12 @@ A single Note object with all its details
 
 
 ### Retrieve a Note [GET]
-+ Response 200 (application/json)
 
-
-
-
++ Response 200 (application/json
     + Header
-
-
-
-
             X-My-Header: The Value
-
-
-
-
     + Body
-
-
-
-
             { "id": 2, "title": "Pick-up posters from post-office" }
-
-
-
 
 ### Remove a Note [DELETE]
 + Response 204
