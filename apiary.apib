@@ -8,6 +8,36 @@ Notes API is a *short texts saving* service similar to its physical paper presen
 # Group Authentication
 Notes related resources of the **Authentication API**
 
+## Credentials
+
+| Field    | Type   | HTML Type | Description                   |
+|----------|--------|-----------|-------------------------------|
+| email    | String | email     | The email address of the user |
+| password | String | text      | The corresponding password    |
+
+## login [/login]
+### login [POST]
++ Request (application/json)
+
+        {
+            "email" : "email@example.com",
+            "password" : "azerty"
+        }
+
++ Response 200 (application/json)
+    
+        {
+            "data" : {
+            }
+        }
+
++ Response 401
+
+## logout [/logout]
+### logout [POST]
++ Response 204
+
+
 
 # Group alerts
 To access to
