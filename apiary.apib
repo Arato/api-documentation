@@ -27,17 +27,9 @@ Below are all properties related to an Alert.
 | `updated_at` |                       |     ✔     | Date   | a ISO8601 formatted date. Updated on each save. |
 
 
-## api/v1/alerts [/api/v1/alerts{?page,limit,userId,sort,order}/{]
-### Retrieve all alerts [GET]
-The GET endpoint retrieves all alerts. you can add query parameters to the endpoint to filter your data.
+## api/v1/alerts [/api/v1/alerts{?page,limit,userId,sort,order}]
 
-| Field    | type   |default | Description                                                           |
-|----------|--------|--------|-----------------------------------------------------------------------|
-| `page`   | int    | 1      | The page.                                                             |
-| `limit`  | String | 20     | The number of elements per page. Maximum `50`.                        |
-| `userId` | int    |        | A user id to filter from.                                             |
-| `sort`   | String | `id`   | The field to sort from. Available values : `id`,`created_at`,`price`. |
-| `order`  | int    | `desc` | The order of sorting. Available values : `asc`, `desc`.               |
+### Retrieve all alerts [GET]
 + Parameters
     + page (optional, number) ... The page
     + userId (optional, string) ... A user id to filter from
@@ -51,23 +43,29 @@ The GET endpoint retrieves all alerts. you can add query parameters to the endpo
         + Values
             + `asc`
             + `desc`
+
 + Response 200 (application/json)
 
         {
-            "users":[{
+            "users":[
+                {
                     "id":1,
                     "email":"email@example.com",
+                    "sequence_number":0
+                },
+                {
+                    "id":2,
+                    "email":"email2@example.com",
                     "sequence_number":0
                 }
             ],
             "paginate":{
-                "total_count":1,
+                "total_count":2,
                 "total_pages":1,
                 "current_page":1,
                 "limit":20
             }
         }
-
 
 + Response 401
 
@@ -86,10 +84,12 @@ The GET endpoint retrieves all alerts. you can add query parameters to the endpo
 
         { "id": 3, "title": "Buy cheese and bread for breakfast." }
 
+
 ## api/v1/alerts/{id} [/api/v1/alerts/{id}]
+
 ### Update an alert [PUT]
 + Parameters
-    + id (required, number, `1`) ... `id` of the Alert.
+    + id (required, number) ... The id of the Alert.
 
 + Request (application/json)
 
@@ -99,91 +99,19 @@ The GET endpoint retrieves all alerts. you can add query parameters to the endpo
             "content" : "Hello"
         }
 
-
 + Response 200 (application/json)
 
         { "id": 3, "title": "Buy cheese and bread for breakfast." }
 
-## DELETE /api/v1/alerts/{id}
-
+### Delete an alert [DELETE]
 + Parameters
-    + id (required, number, `1`) ... Numeric `id` of the Note to perform action with. Has example value.
+    + id (required, number) ... The id of the Alert.
 
++ Response 204 (application/json)
+
++ Response 403 (application/json)
+
++ Response 404 (application/json)
 
 # Group Users
 Notes related resources of the **Users API**
-
-## Users Collection [/api/v1/users{?since}]
-### List all Users [GET]
-+ Parameters
-    + since (optional, string) ... dfdfdfd dfsdf df sdf
-    
-+ Response 200 (application/json)
-
-        {
-            "users":[{
-                    "id":1,
-                    "email":"email@example.com",
-                    "sequence_number":0
-                }
-            ],
-            "paginate":{
-                "total_count":1,
-                "total_pages":1,
-                "current_page":1,
-                "limit":20
-            }
-        }
-
-
-
-
-+ Response 403
-
-
-
-
-### Create a User [POST]
-+ Request (application/json)
-
-
-
-
-        {
-            "email": "email@example.com",
-            "password" : "password",
-            "password_confirmation" : "password"
-        }
-
-
-
-
-+ Response 201 (application/json)
-
-
-
-
-        { "id": 3, "title": "Buy cheese and bread for breakfast." }
-
-
-
-
-## Note [/notes/{id}]
-A single Note object with all its details
-
-+ Parameters
-    + id (required, number, `1`) ... Numeric `id` of the Note to perform action with. Has example value.
-
-
-
-
-### Retrieve a Note [GET]
-
-+ Response 200 (application/json
-    + Header
-            X-My-Header: The Value
-    + Body
-            { "id": 2, "title": "Pick-up posters from post-office" }
-
-### Remove a Note [DELETE]
-+ Response 204
