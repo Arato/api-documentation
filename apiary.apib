@@ -19,15 +19,16 @@ Notes related resources of the **Authentication API**
 # Group alerts
 Notes related resources of the **Alerts API**
 
-
-
-
-
-
-
-
-## Alerts Collection [/api/v1/alerts{?page,limit,userId,sort,order}]
-### List all Alerts [GET]
+## GET /api/v1/alerts
+rergregreg
+| Field     | Required | type   | Description                              |
+|-----------|----------|--------|------------------------------------------|
+| `id`      |     ✔    | int    | The id in the database                   |
+| `title`   |     ✔    | String | The title of the Alert                   |
+| `price`   |     ✔    | int    | The price of the Alert                   |
+| `content` |          | String | A more complete description of the Alert |
+| `user_id` |     ✔    | int    | The id of the User who created the Alert |
+|           |          |        |                                          |
 + Parameters
     + page (optional, number) ... The page
     + userId (optional, string) ... A user id to filter from
@@ -41,14 +42,7 @@ Notes related resources of the **Alerts API**
         + Values
             + `asc`
             + `desc`
-
-
-
-
 + Response 200 (application/json)
-
-
-
 
         {
             "users":[{
@@ -70,14 +64,26 @@ Notes related resources of the **Alerts API**
 
 + Response 401
 
+        {
+            "users":[{
+                    "id":1,
+                    "email":"email@example.com",
+                    "sequence_number":0
+                }
+            ],
+            "paginate":{
+                "total_count":1,
+                "total_pages":1,
+                "current_page":1,
+                "limit":20
+            }
+        }
 
 
 
-### Create an Alert [POST]
+## POST /api/v1/alerts
+zefzefezfzef rfgr 
 + Request (application/json)
-
-
-
 
         {
             "title": "My title",
@@ -90,9 +96,6 @@ Notes related resources of the **Alerts API**
 
 + Response 201 (application/json)
 
-
-
-
         { "id": 3, "title": "Buy cheese and bread for breakfast." }
 
 
@@ -100,13 +103,6 @@ Notes related resources of the **Alerts API**
 
 # Group Users
 Notes related resources of the **Users API**
-
-
-
-
-
-
-
 
 ## Users Collection [/api/v1/users{?since}]
 ### List all Users [GET]
