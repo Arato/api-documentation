@@ -44,6 +44,32 @@ Notes related resources of the **Authentication API**
 ### logout [POST]
 + Response 204
 
+## password/remind [/password/remind]
+### password/remind [POST]
++ Request (application/json)
+    
+        {
+            "email": "mail@mail.com", 
+        }
+
++ Response 204
+
++ Response 400
+
+## password/reset [/password/reset]
+### password/reset [POST]
++ Request (application/json)
+    
+        {
+            "email": "mail@mail.com", 
+            "password": "newpassword", 
+            "password_confirmation": "newpassword", 
+            "token": ""
+        }
+
++ Response 204
+
++ Response 400
 
 # Group alerts
 To access to alerts, you have to be authenticated (unless for the "retrieve all alerts" endpoint).
@@ -333,7 +359,7 @@ Below are all properties related to a User.
 + Parameters
     + id (required, number) ... The id of the User.
     
-### Show an alert [GET]
+### Show a user [GET]
 
 + Response 200 (application/json)
     
