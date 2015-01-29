@@ -75,18 +75,31 @@ Notes related resources of the **Authentication API**
 To access to alerts, you have to be authenticated (unless for the "retrieve all alerts" endpoint).
 
 ## Model
++ Model
+    + page (optional, number) ... The page
+    + userId (optional, string) ... A user id to filter from
+    + limit = `20` (optional, number) ... The number of elements per page. Maximum `50`.
+    + sort  = `id` (optional, string) ... The field to sort from.
+        + Values
+            + `id`
+            + `created_at`
+            + `price`
+    + order = `desc`(optional, string) ... The order of sorting.
+        + Values
+            + `asc`
+            + `desc`
 
 Below are all properties related to an Alert.
 
-| Field        | Required for creation | Read only | type   | Description                                     |
-|--------------|:---------------------:|:---------:|--------|-------------------------------------------------|
-| `id`         |           ✔           |           | int    | The id in the database                          |
-| `title`      |           ✔           |           | String | The title of the Alert                          |
-| `price`      |           ✔           |           | int    | The price of the Alert                          |
-| `content`    |                       |           | String | A more complete description of the Alert        |
-| `user_id`    |           ✔           |     ✔     | int    | The id of the User who created the Alert        |
-| `created_at` |                       |     ✔     | Date   | a ISO8601 formatted date.                       |
-| `updated_at` |                       |     ✔     | Date   | a ISO8601 formatted date. Updated on each save. |
+| Field        | Required            | Read only | type   | Description                                     |
+|--------------|:-------------------:|:---------:|--------|-------------------------------------------------|
+| `id`         | ✔                   |           | int    | The id in the database                          |
+| `title`      | ✔                   |           | String | The title of the Alert                          |
+| `price`      | ✔                   |           | int    | The price of the Alert                          |
+| `content`    |                     |            | String | A more complete description of the Alert        |
+| `user_id`    | ✔ (only for update) |     ✔     | int    | The id of the User who created the Alert        |
+| `created_at` |                     |     ✔     | Date   | a ISO8601 formatted date.                       |
+| `updated_at` |                     |     ✔     | Date   | a ISO8601 formatted date. Updated on each save. |
 
 
 ## api/v1/alerts [/api/v1/alerts{?page,limit,userId,sort,order}]
@@ -259,15 +272,6 @@ Below are all properties related to an Alert.
 
 Below are all properties related to a User.
 
-| Field        | Required for creation | Read only | type   | Description                                     |
-|--------------|:---------------------:|:---------:|--------|-------------------------------------------------|
-| `id`         |           ✔           |           | int    | The id in the database                          |
-| `title`      |           ✔           |           | String | The title of the Alert                          |
-| `price`      |           ✔           |           | int    | The price of the Alert                          |
-| `content`    |                       |           | String | A more complete description of the Alert        |
-| `user_id`    |           ✔           |     ✔     | int    | The id of the User who created the Alert        |
-| `created_at` |                       |     ✔     | Date   | a ISO8601 formatted date.                       |
-| `updated_at` |                       |     ✔     | Date   | a ISO8601 formatted date. Updated on each save. |
 
 
 ## api/v1/users [/api/v1/users{?page,limit,sort,order}]
