@@ -2,7 +2,7 @@ FORMAT: 1A
 host: https://arato-api.herokuapp.com
 
 # arato
-Notes API is a *short texts saving* service similar to its physical paper presence on your table.
+Arato is a personnal project to learn Laravel and to learn the best practices of creating an API.
 
 
 # Group Authentication
@@ -20,18 +20,25 @@ Notes related resources of the **Authentication API**
 + Request (application/json)
 
         {
-            "email" : "email@example.com",
-            "password" : "azerty"
+            "email": "email@example.com",
+            "password": "azerty"
         }
 
 + Response 200 (application/json)
     
         {
-            "data" : {
+            "data": {
             }
         }
 
 + Response 401
+
+        {
+            "error": {
+                "message" : "Invalid credentials",
+                "status_code" : 401
+            }
+        }
 
 ## logout [/logout]
 ### logout [POST]
@@ -76,59 +83,68 @@ Below are all properties related to an Alert.
 + Response 200 (application/json)
 
         {
-            "alerts" : [
+            "alerts": [
                 {
-                    "id" : 2,
-                    "title" : "My second title",
-                    "price" : 10,
-                    "user" : {
-                        "id" : 2,
-                        "email" : "email2@example.com"
+                    "id": 2,
+                    "title": "My second title",
+                    "price": 10,
+                    "user": {
+                        "id": 2,
+                        "email": "email2@example.com"
                     },
-                    "created_at" : "2015-01-07T22:44:17+0000",
-                    "updated_at" : "2015-01-18T12:25:22+0000"
+                    "created_at": "2015-01-07T22:44:17+0000",
+                    "updated_at": "2015-01-18T12:25:22+0000"
                 },
                 {
-                    "id" : 1,
-                    "title" : "My first title",
-                    "price" : 10,
-                    "content" : "My content",
-                    "user" : {
-                        "id" : 1,
-                        "email" : "email@example.com"
+                    "id": 1,
+                    "title": "My first title",
+                    "price": 10,
+                    "content": "My content",
+                    "user": {
+                        "id": 1,
+                        "email": "email@example.com"
                     },
-                    "created_at" : "2015-01-07T10:44:17+0000",
-                    "updated_at" : "2015-01-08T12:25:22+0000"
+                    "created_at": "2015-01-07T10:44:17+0000",
+                    "updated_at": "2015-01-08T12:25:22+0000"
                 }
             ],
-            "paginate" : {
-                "total_count" : 2,
-                "total_pages" : 1,
-                "current_page" : 1,
-                "limit" : 20
+            "paginate": {
+                "total_count": 2,
+                "total_pages": 1,
+                "current_page": 1,
+                "limit": 20
             }
         }
-
-+ Response 401
 
 ### Create a new alert [POST]
 
 + Request (application/json)
 
         {
-            "title" : "My title",
-            "price" : 10,
-            "content" : "Hello"
+            "title": "My title",
+            "price": 10,
+            "content": "Hello"
         }
 
 
 + Response 201 (application/json)
 
         {
-            "id" : 3, 
-            "title" : "My title",
-            "price" : 10,
-            "content" : "Hello"
+            "id": 3, 
+            "title": "My title",
+            "price": 10,
+            "content": "Hello"
+        }
+
++ Response 400 (application/json)
+
++ Response 401 (application/json)
+
+        {
+            "error": {
+                "message": "Invalid credentials",
+                "status_code": 401
+            }
         }
 
 
@@ -141,16 +157,16 @@ Below are all properties related to an Alert.
 + Response 200 (application/json)
     
         {
-            "alerts" : {
-                "id" : 2,
-                "title" : "My second title",
-                "price" : 10,
-                "user" : {
-                    "id" : 2,
-                    "email" : "email2@example.com"
+            "alerts": {
+                "id": 2,
+                "title": "My second title",
+                "price": 10,
+                "user": {
+                    "id": 2,
+                    "email": "email2@example.com"
                 },
-                "created_at" : "2015-01-07T22:44:17+0000",
-                "updated_at" : "2015-01-18T12:25:22+0000"
+                "created_at": "2015-01-07T22:44:17+0000",
+                "updated_at": "2015-01-18T12:25:22+0000"
             }
         }
 
@@ -159,25 +175,35 @@ Below are all properties related to an Alert.
 + Request (application/json)
 
         {
-            "title" : "My title",
-            "price" : "10",
-            "content" : "Hello"
+            "title": "My title",
+            "price": "10",
+            "content": "Hello"
         }
 
 + Response 200 (application/json)
 
         {
-            "id" : 2,
-            "title" : "My title",
-            "price" : 10,
-            "content" : "Hello",
-            "user" : {
-                "id" : 2,
-                "email" : "email2@example.com"
+            "id": 2,
+            "title": "My title",
+            "price": 10,
+            "content": "Hello",
+            "user": {
+                "id": 2,
+                "email": "email2@example.com"
             },
-            "created_at" : "2015-01-07T22:44:17+0000",
-            "updated_at" : "2015-01-25T12:25:22+0000"
+            "created_at": "2015-01-07T22:44:17+0000",
+            "updated_at": "2015-01-25T12:25:22+0000"
         }
+        
++ Response 401 (application/json)
+
+        {
+            "error": {
+                "message": "Invalid credentials",
+                "status_code": 401
+            }
+        }
+
 + Response 403 (application/json)
 
 + Response 404 (application/json)
@@ -186,9 +212,230 @@ Below are all properties related to an Alert.
 
 + Response 204 (application/json)
 
++ Response 401 (application/json)
+
+        {
+            "error": {
+                "message": "Invalid credentials",
+                "status_code": 401
+            }
+        }
+
 + Response 403 (application/json)
 
 + Response 404 (application/json)
 
-# Group Users
-Notes related resources of the **Users API**
+
+
+# Group users
+
+## Model
+
+Below are all properties related to a User.
+
+| Field        | Required for creation | Read only | type   | Description                                     |
+|--------------|:---------------------:|:---------:|--------|-------------------------------------------------|
+| `id`         |           ✔           |           | int    | The id in the database                          |
+| `title`      |           ✔           |           | String | The title of the Alert                          |
+| `price`      |           ✔           |           | int    | The price of the Alert                          |
+| `content`    |                       |           | String | A more complete description of the Alert        |
+| `user_id`    |           ✔           |     ✔     | int    | The id of the User who created the Alert        |
+| `created_at` |                       |     ✔     | Date   | a ISO8601 formatted date.                       |
+| `updated_at` |                       |     ✔     | Date   | a ISO8601 formatted date. Updated on each save. |
+
+
+## api/v1/users [/api/v1/users{?page,limit,sort,order}]
+
+### Retrieve all users [GET]
++ Parameters
+    + page (optional, number) ... The page
+    + limit = `20` (optional, number) ... The number of elements per page. Maximum `50`.
+    + sort  = `id` (optional, string) ... The field to sort from.
+        + Values
+            + `id`
+            + `created_at`
+    + order = `desc`(optional, string) ... The order of sorting.
+        + Values
+            + `asc`
+            + `desc`
+
++ Response 200 (application/json)
+
+        {
+            "users": [
+                {
+                    "id": 1,
+                    "email": "prbaron22@gmail.com",
+                    "sequence_number": 1
+                },
+                {
+                    "id": 11,
+                    "email": "mail@mail.com",
+                    "sequence_number": 0
+                }
+            ],
+            "paginate": {
+                "total_count": 2,
+                "total_pages": 1,
+                "current_page": 1,
+                "limit": 20
+            }
+        }
+
++ Response 401 (application/json)
+
+        {
+            "error": {
+                "message": "Invalid credentials",
+                "status_code": 401
+            }
+        }
+
+### Create a new user [POST]
+
++ Request (application/json)
+
+        {
+            "email" : "email@example.com",
+            "password" : "password",
+            "password_confirmation" : "password"
+        }
+
+
++ Response 201 (application/json)
+
+        {
+            "users": {
+                "id": 11,
+                "email": "mail@mail.com",
+                "sequence_number": null
+            }
+        }
+        
++ Response 400 (application/json)
+
+        {
+            "error": {
+                "message": {
+                    "email": [
+                        "The email has already been taken."
+                    ],
+                    "password": [
+                        "The password confirmation does not match."
+                    ]
+                },
+                "status_code": 400
+            }
+        }
+
+
+## api/v1/users/{id} [/api/v1/users/{id}]
++ Parameters
+    + id (required, number) ... The id of the User.
+    
+### Show an alert [GET]
+
++ Response 200 (application/json)
+    
+        {
+            "users": {
+                "id": 1,
+                "email": "mail@mail.com",
+                "sequence_number": 1
+            }
+        }
+
++ Response 401 (application/json)
+
+        {
+            "error": {
+                "message": "Invalid credentials",
+                "status_code": 401
+            }
+        }
+
++ Response 404 (application/json)
+
+        {
+            "error": {
+                "message": "User does not exist.",
+                "status_code": 404
+            }
+        }
+
+### Update a user [PUT]
+
++ Request (application/json)
+
+        {
+            "email" : "mysecondemail@mail.com"
+        }
+
++ Response 200 (application/json)
+
+        {
+            "users": {
+                "id": 1,
+                "email": "mysecondemail@mail.com",
+                "sequence_number": 1
+            }
+        }
+        
++ Response 401 (application/json)
+
+        {
+            "error": {
+                "message": "Invalid credentials",
+                "status_code": 401
+            }
+        }
+        
++ Response 403 (application/json)
+
+        {
+            "error": {
+                "message": "Forbidden",
+                "status_code": 403
+            }
+        }
+
++ Response 404 (application/json)
+
+        {
+            "error": {
+                "message": "User does not exist.",
+                "status_code": 404
+            }
+        }
+
+### Delete a user [DELETE]
+
++ Response 204 (application/json)
+
++ Response 401 (application/json)
+
+        {
+            "error": {
+                "message": "Invalid credentials",
+                "status_code": 401
+            }
+        }
+        
++ Response 403 (application/json)
+
+        {
+            "error": {
+                "message": "Forbidden",
+                "status_code": 403
+            }
+        }
+
++ Response 404 (application/json)
+
+        {
+            "error": {
+                "message": "User does not exist.",
+                "status_code": 404
+            }
+        }
+
