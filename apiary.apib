@@ -2,7 +2,7 @@ FORMAT: 1A
 host: https://arato-api.herokuapp.com
 
 # arato
-Arato is a personnal project to learn Laravel and to learn the best practices of creating an API.
+Arato is a personnal project to learn Laravel and the best practices of creating an API.
 
 
 # Group Authentication
@@ -64,12 +64,21 @@ Notes related resources of the **Authentication API**
             "email": "mail@mail.com", 
             "password": "newpassword", 
             "password_confirmation": "newpassword", 
-            "token": ""
+            "token": "47cb93c740eea5e761df955682e83928e0ecfe3b"
         }
 
 + Response 204
 
 + Response 400
+
++ Response 404 (application/json)
+        
+        {
+            "error": {
+                "message": "User does not exist.",
+                "status_code": 404
+            }
+        }
 
 # Group alerts
 To access to alerts, you have to be authenticated (unless for the "retrieve all alerts" endpoint).
