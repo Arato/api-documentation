@@ -195,6 +195,20 @@ Below are all properties related to an Alert.
 
 + Response 400 (application/json)
 
+        {
+            "error": {
+                "message": {
+                    "title": [
+                        "The title field is required."
+                    ],
+                    "price": [
+                        "The price field is required."
+                    ]
+                },
+                "status_code": 400
+            }
+        }
+
 + Response 401 (application/json)
 
         {
