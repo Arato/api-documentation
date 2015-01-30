@@ -54,7 +54,23 @@ Notes related resources of the **Authentication API**
 
 + Response 204
 
-+ Response 400
++ Response 400 (application/json)
+        
+        {
+            "error": {
+                "message": "There is an error.",
+                "status_code": 400
+            }
+        }
+
++ Response 404 (application/json)
+        
+        {
+            "error": {
+                "message": "User does not exist.",
+                "status_code": 404
+            }
+        }
 
 ## password/reset [/password/reset]
 ### password/reset [POST]
@@ -69,7 +85,14 @@ Notes related resources of the **Authentication API**
 
 + Response 204
 
-+ Response 400
++ Response 400 (application/json)
+
+        {
+            "error": {
+                "message": "There is an error.",
+                "status_code": 400
+            }
+        }
 
 + Response 404 (application/json)
         
