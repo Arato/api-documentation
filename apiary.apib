@@ -505,13 +505,15 @@ Below are all properties related to a User.
 
 
 
-## api/v1/users/{id}/alerts [/api/v1/users{id}/alerts{?page,limit,sort,order}]
+## api/v1/users/{id}/alerts [/api/v1/users{id}/alerts{?page,limit,priceMin,priceMax,sort,order}]
 
 ### Retrieve all alerts for a user [GET]
 + Parameters
     + id (required, number) ... The id of the User.
     + page (optional, number) ... The page
     + limit = `20` (optional, number) ... The number of elements per page. Maximum `50`.
+    + priceMin = `0` (optional, number) ... The minimum price
+    + priceMax (optional, number) ... The maximum price
     + sort  = `id` (optional, string) ... The field to sort from.
         + Values
             + `id`
